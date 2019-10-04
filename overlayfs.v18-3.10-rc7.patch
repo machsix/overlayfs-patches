@@ -3210,7 +3210,7 @@ diff --git a/include/linux/fs.h b/include/linux/fs.h
 index 65c2be2..72d04f8 100644
 --- a/include/linux/fs.h
 +++ b/include/linux/fs.h
-@@ -244,6 +244,12 @@ struct iattr {
+@@ -245,6 +245,12 @@ struct iattr {
   */
  #include <linux/quota.h>
  
@@ -3223,7 +3223,7 @@ index 65c2be2..72d04f8 100644
  /** 
   * enum positive_aop_returns - aop return codes with specific semantics
   *
-@@ -1322,6 +1328,11 @@ struct super_block {
+@@ -1323,6 +1329,11 @@ struct super_block {
  
  	/* Being remounted read-only */
  	int s_readonly_remount;
@@ -3235,7 +3235,7 @@ index 65c2be2..72d04f8 100644
  };
  
  /* superblock cache pruning functions */
-@@ -1575,6 +1586,7 @@ struct inode_operations {
+@@ -1578,6 +1589,7 @@ struct inode_operations {
  	int (*atomic_open)(struct inode *, struct dentry *,
  			   struct file *, unsigned open_flag,
  			   umode_t create_mode, int *opened);
@@ -3243,7 +3243,7 @@ index 65c2be2..72d04f8 100644
  } ____cacheline_aligned;
  
  ssize_t rw_copy_check_uvector(int type, const struct iovec __user * uvector,
-@@ -2008,6 +2020,7 @@ extern struct file *file_open_name(struct filename *, int, umode_t);
+@@ -2011,6 +2023,7 @@ extern struct file *file_open_name(struct filename *, int, umode_t);
  extern struct file *filp_open(const char *, int, umode_t);
  extern struct file *file_open_root(struct dentry *, struct vfsmount *,
  				   const char *, int);
@@ -3251,7 +3251,7 @@ index 65c2be2..72d04f8 100644
  extern struct file * dentry_open(const struct path *, int, const struct cred *);
  extern int filp_close(struct file *, fl_owner_t id);
  
-@@ -2208,6 +2221,7 @@ extern sector_t bmap(struct inode *, sector_t);
+@@ -2211,6 +2224,7 @@ extern sector_t bmap(struct inode *, sector_t);
  #endif
  extern int notify_change(struct dentry *, struct iattr *);
  extern int inode_permission(struct inode *, int);
@@ -3259,10 +3259,10 @@ index 65c2be2..72d04f8 100644
  extern int generic_permission(struct inode *, int);
  
  static inline bool execute_ok(struct inode *inode)
-@@ -2414,6 +2428,9 @@ extern ssize_t generic_file_splice_write(struct pipe_inode_info *,
- 		struct file *, loff_t *, size_t, unsigned int);
- extern ssize_t generic_splice_sendpage(struct pipe_inode_info *pipe,
+@@ -2419,6 +2433,9 @@ extern ssize_t generic_splice_sendpage(struct pipe_inode_info *pipe,
  		struct file *out, loff_t *, size_t len, unsigned int flags);
+ extern ssize_t generic_splice_from_socket(struct file *file, struct socket *sock,
+ 				     loff_t __user *ppos, size_t count);
 +extern long do_splice_direct(struct file *in, loff_t *ppos, struct file *out,
 +		loff_t *opos, size_t len, unsigned int flags);
 +
